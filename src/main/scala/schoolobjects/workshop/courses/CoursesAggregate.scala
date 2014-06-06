@@ -51,7 +51,7 @@ object CoursesAggregate {
   }
 
   def fail = CourseUpdateM[Int] { state =>
-    left("Does not work") // Helper method in schoolobjects.ddd.DDD._
+    left("CoursesAggregate.fail always fails") // Helper method in schoolobjects.ddd.DDD._
                           // Equivalent to:
                           // -\/(Vector("Does not work"))
   }  
