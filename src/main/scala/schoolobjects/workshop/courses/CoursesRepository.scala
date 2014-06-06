@@ -8,15 +8,11 @@ import workshop.models._, workshop.courses._, CoursesAggregate._
 class CoursesRepository {
   def getCourse(id: Int) = courses(id)
 
-  def updateCourse[A](result: CourseUpdateMResult[A]): Unit = result match {
-    case \/-((AggregateState(course, actions), retValue)) => {
-      println(s"Saving repository:")
-      println(s"Course: $course")
-      println(s"Actions: $actions")
-    }
-    case -\/(errors) => {
-      println(s"Unable to save: $errors")
-    }
+  def updateCourse[A](result: CourseUpdateMResultTuple[A]): Unit = { 
+    val (AggregateState(course, actions), retValue) = result
+    println(s"Saving repository:")
+    println(s"Course: $course")
+    println(s"Actions: $actions")
   }
 
   val courses = Vector(

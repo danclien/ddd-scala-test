@@ -10,7 +10,7 @@ object CoursesAggregate {
   /* Setup */
 
   type CourseUpdateM[A] = AggregateUpdateM[Course, A]
-  type CourseUpdateMResult[A] = AggregateUpdateMResult[Course, A]
+  type CourseUpdateMResultTuple[A] = AggregateUpdateMResultTuple[Course, A]
 
   object CourseUpdateM {
     def apply[A](f: AggregateState[Course] => AggregateUpdateResult[(AggregateState[Course], A)]): CourseUpdateM[A] = AggregateUpdateM[Course, A](f)

@@ -7,7 +7,8 @@ object DDD {
 
   type AggregateUpdateResult[+A] = \/[Vector[String], A]
   type AggregateUpdateM[R, A] = StateT[AggregateUpdateResult, AggregateState[R], A]
-  type AggregateUpdateMResult[A, B] = AggregateUpdateResult[(AggregateState[A], B)]
+  type AggregateUpdateMResultTuple[A, B] = (AggregateState[A], B)
+  type AggregateUpdateMResult[A, B] = AggregateUpdateResult[AggregateUpdateMResultTuple[A, B]]
 
   def printResult[A, B](updateResults: AggregateUpdateMResult[A, B]) = {
     updateResults match {

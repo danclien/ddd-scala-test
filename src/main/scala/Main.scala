@@ -27,7 +27,12 @@ object Main extends App {
 
   println("Create activity: ")
   println()
-  coursesRepo.updateCourse(createActivityResult)
+
+  createActivityResult match {
+    case \/-(result) => coursesRepo.updateCourse(result)
+    case -\/(errors) => println(errors)
+  }
+
   println()
   println("*******************************************")
   println()
@@ -46,7 +51,12 @@ object Main extends App {
 
   println("Delete activity: ")
   println()
-  coursesRepo.updateCourse(deleteActivityResult)
+  
+  deleteActivityResult match {
+    case \/-(result) => coursesRepo.updateCourse(result)
+    case -\/(errors) => println(errors)
+  }
+
   println()
   println("*******************************************")
   println()
@@ -64,7 +74,12 @@ object Main extends App {
 
   println("Bad update: ")
   println()
-  coursesRepo.updateCourse(badResult)
+
+  badResult match {
+    case \/-(result) => coursesRepo.updateCourse(result)
+    case -\/(errors) => println(errors)
+  }
+
   println()
   println("*******************************************")
   println()
