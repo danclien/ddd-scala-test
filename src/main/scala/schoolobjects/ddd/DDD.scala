@@ -25,9 +25,6 @@ object DDD {
   def left(errors: Vector[String]) = -\/(errors)
 
   def right[A, B](aggregate: A, actions: AggregateActions, returnValue: B) = {
-    \/-((
-      AggregateState(aggregate, actions),
-      returnValue
-    ))
+    \/-((AggregateState(aggregate, actions), returnValue))
   }  
 }

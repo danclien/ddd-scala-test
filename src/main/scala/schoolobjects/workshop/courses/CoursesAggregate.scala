@@ -7,8 +7,8 @@ import schoolobjects._, ddd._, DDD._
 import workshop.models._
 
 object CoursesAggregate {
-  /* Setup */
-
+  
+  /***** Setup *****/
   type CourseUpdateM[A] = AggregateUpdateM[Course, A]
   type CourseUpdateMResultTuple[A] = AggregateUpdateMResultTuple[Course, A]
 
@@ -18,7 +18,6 @@ object CoursesAggregate {
 
 
   /* Commands */
-
   def addActivity(activity: Activity) = CourseUpdateM[Unit] { state =>
     import Course.Lenses.{ activities }
 
@@ -30,12 +29,11 @@ object CoursesAggregate {
     // Add the action to the actions list
     val newChanges: Vector[EntityAction[Any]] = actions :+ Create(activity)
 
-    right(newCourse, newChanges, Unit)        // Helper method in schoolobjects.ddd.DDD._
-                                              // Equivalent to v-------
-
+    right(newCourse, newChanges, Unit)            // Helper method in schoolobjects.ddd.DDD._
+                                                  // Equivalent to v-------
     // \/-((
-    //   AggregateState(newCourse, newChanges),  // <-- new updated state
-    //   Unit                                    // <-- return value of the function
+    //   AggregateState(newCourse, newChanges),   // <-- new updated state
+    //   Unit                                     // <-- return value of the function
     // ))
   }
 
@@ -51,8 +49,8 @@ object CoursesAggregate {
   }
 
   def fail = CourseUpdateM[Int] { state =>
-    left("CoursesAggregate.fail always fails") // Helper method in schoolobjects.ddd.DDD._
-                          // Equivalent to:
-                          // -\/(Vector("Does not work"))
+    left("CoursesAggregate.fail always fails")  // Helper method in schoolobjects.ddd.DDD._
+                                                // Equivalent to:
+                                                // -\/(Vector("CoursesAggregate.fail always fails"))
   }  
 }

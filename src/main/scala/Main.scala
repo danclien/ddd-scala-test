@@ -8,19 +8,17 @@ object Main extends App {
   /* Setup */
   val coursesRepo = new CoursesRepository
   val course = coursesRepo.getCourse(1)
-  val newActivity = Activity(400, "Learn about everything else", Vector[Event]())
+  val newActivity = Activity(400, "Learn about DC comics", Vector[Event]())
 
   1 to 6 foreach { _ => println() }
 
-  println("Starting course: " + course)
-  println()
-  println("*******************************************")
-  println()
-
-
   /* Create activity */
 
-  println("Create activity: ")
+  println("Create activity")
+  println("=================")
+  println()
+  println(s"Before: $course")
+  println(s"New activity: $newActivity")
   println()
 
   // Commands to be performed
@@ -38,15 +36,18 @@ object Main extends App {
   }
 
   println()
-  println("*******************************************")
   println()
 
   /* Remove activity */
 
-  println("Delete activity: ")
-  println()
-
   val targetActivity = course.activities(0)
+
+  println("Delete activity")
+  println("=================")
+  println()
+  println(s"Before: $course")
+  println(s"Deleting activity: $targetActivity")
+  println()
 
   val deleteActivity = for {
     a <- removeActivity(targetActivity)
@@ -60,12 +61,12 @@ object Main extends App {
   }
 
   println()
-  println("*******************************************")
   println()
 
   /* Failing update */
 
-  println("Bad update: ")
+  println("Bad update ")
+  println("============")
   println()
 
   val badUpdate = for {
@@ -80,10 +81,6 @@ object Main extends App {
     case -\/(errors) => println("Errors: " + errors)
   }
 
-  println()
-  println("*******************************************")
-  println()
-
-  1 to 3 foreach { _ => println() }
+  1 to 5 foreach { _ => println() }
 
 }

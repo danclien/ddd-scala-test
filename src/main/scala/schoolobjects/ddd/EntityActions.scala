@@ -1,6 +1,6 @@
 package schoolobjects.ddd
 
-sealed trait EntityAction[+A]
+trait EntityAction[+A]
 
 case class Create[+A](value: A) extends EntityAction[A]
 case class Update[+A](value: A) extends EntityAction[A]
